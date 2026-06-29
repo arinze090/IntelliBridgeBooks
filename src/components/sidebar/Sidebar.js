@@ -152,7 +152,10 @@ const Sidebar = () => {
   const isSmallScreen = window.innerWidth <= 1300;
   const [sidebar, setSidebar] = useState(false);
 
-  const showSidebar = () => setSidebar(!sidebar);
+  const showSidebar = () => {
+    console.log("sideeeee", sidebar);
+    setSidebar(!sidebar);
+  };
 
   // Close sidebar when clicking outside
   useEffect(() => {
@@ -256,7 +259,7 @@ const Sidebar = () => {
               />
             </NavIcon>
 
-            {SidebarData.map((item, index) => {
+            {SidebarData?.map((item, index) => {
               return (
                 <SubMenu item={item} key={index} closeSidebar={showSidebar} />
               );

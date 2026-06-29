@@ -3,9 +3,8 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 import { COLORS } from "../../themes/themes";
-import AuthorsCards from "../../components/cards/AuthorsCards";
-import { dummAuthors } from "../../data/dummyData";
 import FormButton from "../../components/form/FormButton";
+import BookCardWithPriceTag from "../../components/cards/BookCardWithPriceTag";
 
 export const FooterContainer = styled.div`
   background: ${COLORS.legacyBridgeSecondBlue};
@@ -105,7 +104,7 @@ function Books({ reduxBooksOnlyData }) {
       {/* Authors List */}
       <AuthorsGrid>
         {reduxBooksOnlyData?.map((author, index) => (
-          <AuthorsCards key={index} props={author} />
+          <BookCardWithPriceTag key={index} props={author} />
         ))}
       </AuthorsGrid>
 

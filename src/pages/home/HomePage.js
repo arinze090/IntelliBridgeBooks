@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Banner from "./Banner";
-import Books from "./Books";
 import Authors from "./Authors";
 import DownloadApp from "./DownloadApp";
 import axiosInstance from "../../utils/api-client";
 import { saveBookOnlyData } from "../../redux/features/books/booksSlice";
+import Books2 from "./Books2";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ function HomePage() {
   return (
     <>
       <Banner />
-      <Books reduxBooksOnlyData={reduxBooksOnlyData} />
+      <Books2 reduxBooksOnlyData={reduxBooksOnlyData} />
       <Authors reduxBooksOnlyData={reduxBooksOnlyData} />
       <DownloadApp />
     </>

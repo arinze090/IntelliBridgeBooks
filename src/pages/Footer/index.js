@@ -311,7 +311,9 @@ const Footer = () => {
           <br /> Ikeja Lagos, <br /> Nigeria.
         </FooterDescription>
 
-        <FooterDescription>Phone: +234 815 982 5292</FooterDescription>
+        <FooterDescription>
+          Phone: <a href="tel:+234 815 982 5292">+234 815 982 5292 </a>
+        </FooterDescription>
 
         <FooterDescription>
           Email:{" "}

@@ -105,10 +105,11 @@ function AuthorsPage() {
   const dispatch = useDispatch();
 
   const state = useSelector((state) => state);
-  const reduxBooks = state?.books?.books;
+  const reduxBooksOnlyData = state?.books?.booksOnlyData;
+  console.log("reduxBooksOnlyData", reduxBooksOnlyData);
 
   const groupedByAuthor = Object.values(
-    reduxBooks?.reduce((acc, book) => {
+    reduxBooksOnlyData?.reduce((acc, book) => {
       const authorId = book?.author?.toLowerCase()?.replace(/\s/g, "-");
 
       if (!acc[authorId]) {
@@ -184,4 +185,4 @@ function AuthorsPage() {
   );
 }
 
-export default verifyLoginToken(AuthorsPage);
+export default AuthorsPage;

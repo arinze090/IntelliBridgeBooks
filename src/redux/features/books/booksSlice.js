@@ -9,6 +9,8 @@ const initialState = {
   bookCategories: [],
   selectedBook: null,
   booksOnlyData: [],
+  selectedAuthor: null,
+  boughtBooks: [],
 };
 
 const booksSlice = createSlice({
@@ -62,6 +64,12 @@ const booksSlice = createSlice({
     saveBookOnlyData: (state, action) => {
       state.booksOnlyData = action.payload;
     },
+    saveSelectedAuthor: (state, action) => {
+      state.selectedAuthor = action.payload;
+    },
+    saveBoughtBooks: (state, action) => {
+      state.boughtBooks = [...state.boughtBooks, action.payload];
+    },
   },
 });
 
@@ -77,5 +85,7 @@ export const {
   saveSelectedbook,
   removeBooksAfterSignOut,
   saveBookOnlyData,
+  saveSelectedAuthor,
+  saveBoughtBooks,
 } = booksSlice.actions;
 export default booksSlice.reducer;

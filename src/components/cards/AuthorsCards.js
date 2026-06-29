@@ -1,5 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { slugify } from "../../Library/Common";
+import { useNavigate } from "react-router-dom";
+import { saveSelectedAuthor } from "../../redux/features/books/booksSlice";
+import { useDispatch } from "react-redux";
 
 export const AuthorCard = styled.div`
   width: 200px;
@@ -62,9 +66,20 @@ export const AuthorName = styled.div`
 `;
 
 function AuthorsCards({ props }) {
-  console.log("pppp", props);
+  const dispatch = useDispatch();
+  // console.log("pppp", props);
+  const slugifiedAuthor = slugify(props?.author);
+  // console.log("slugifiedAuthor", slugifiedAuthor);
+
+  const navigate = useNavigate();
+
+  const handleAuthorClick = () => {
+    dispatch(saveSelectedAuthor(props));
+    navigate(`/author/${slugifiedAuthor}`);
+  };
+
   return (
-    <AuthorCard>
+    <AuthorCard onClick={() => handleAuthorClick()}>
       <ImageWrapper>
         <AuthorImage src={props?.authorImage} alt="Author" />
         <AuthorOverlay>{props?.author}</AuthorOverlay>

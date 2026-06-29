@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { COLORS } from "../../themes/themes";
 
 const Container = styled.div`
-  margin: 0 auto;
-  background: #000;
+  margin-top: 10px;
   border-radius: 8px;
 `;
 
 const Nav = styled.nav`
   display: flex;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 20px;
   overflow-x: auto;
   white-space: nowrap;
-  padding-bottom: 1rem;
+  // padding-bottom: 1rem;
 
   /* Hide scrollbar */
   &::-webkit-scrollbar {
@@ -25,18 +25,20 @@ const Nav = styled.nav`
 
 const NavItem = styled.button`
   padding: 0.5rem 1rem;
-  border: 2px solid #05a30b;
-  border-radius: 20px;
-  background: ${(props) => (props.active ? "#05A30B" : "#000")};
-  color: ${(props) => (props.active ? "#fff" : "#fff")};
+  border-bottom: ${(props) =>
+    props.active ? `2px solid ${COLORS.legacyBridgePrimary}` : "none"};
+  color: ${(props) => (props.active ? COLORS.legacyBridgePrimary : "#333")};
   cursor: pointer;
   font-size: 1rem;
   font-weight: bold;
-  transition: background 0.3s, color 0.3s;
+  // border-bottom: 1px solid #ccc;
+
+  transition:
+    background 0.3s,
+    color 0.3s;
 
   &:hover {
-    background: #05a30b;
-    color: #fff;
+    color: ${COLORS.legacyBridgePrimary};
   }
 `;
 

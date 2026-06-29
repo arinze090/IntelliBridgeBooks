@@ -81,7 +81,12 @@ const Navbar = () => {
           />
           <SmallNavBtn>
             {navbarData?.map((item, index) => (
-              <NavLink key={index} color={"#fff"} to={item?.path}>
+              <NavLink
+                key={index}
+                color={"#fff"}
+                to={item?.path}
+                onClick={toggleMenu}
+              >
                 {item?.title}
               </NavLink>
             ))}

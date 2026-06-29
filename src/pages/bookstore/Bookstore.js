@@ -7,7 +7,7 @@ import FormInput from "../../components/form/FormInput";
 import verifyLoginToken from "../../components/hoc/veryLoginToken";
 import axiosInstance from "../../utils/api-client";
 import { getBooks } from "../../redux/features/books/booksSlice";
-import AuthorsCards from "../../components/cards/AuthorsCards";
+import BookCardWithPriceTag from "../../components/cards/BookCardWithPriceTag";
 
 const BookstoreContainer = styled.div`
   padding: 40px;
@@ -106,11 +106,35 @@ function Bookstore() {
 
   const state = useSelector((state) => state);
   const loggedInUser = state?.user?.user;
-  const reduxBooks = state?.books?.books;
+  const reduxBooks = state?.books?.booksOnlyData;
   console.log("reduxBooks", reduxBooks);
   console.log("loggedInUser", loggedInUser);
 
   const [loading, setLoading] = useState(false);
+
+  // Search filter states
+  const [clicked, setClicked] = useState(false);
+  const [search, setSearch] = useState("");
+  const [masterDataSource, setMasterDataSource] = useState(reduxBooks);
+  const [filteredDataSource, setFilteredDataSource] = useState(reduxBooks);
+
+  const searchFilterFunction = (text) => {
+    if (text) {
+      const newData = masterDataSource?.filter((item) => {
+        const itemData = item?.bookTitle ? item?.bookTitle?.toUpperCase() : "";
+
+        const textData = text?.toUpperCase();
+
+        return itemData?.indexOf(textData) > -1;
+      });
+
+      setFilteredDataSource(newData);
+      setSearch(text);
+    } else {
+      setFilteredDataSource(masterDataSource);
+      setSearch(text);
+    }
+  };
 
   const fetchBooksData = async () => {
     try {
@@ -165,14 +189,16 @@ function Bookstore() {
           inputBackgroundColor={"#fff"}
           inputColor={"#000"}
           marginBottom={"0px"}
+          value={search}
+          onChange={(e) => searchFilterFunction(e.target.value)}
         />
       </SearchContainer>
 
       {/* Authors List */}
       <AuthorsGrid>
         {reduxBooks?.length ? (
-          reduxBooks?.map((author, index) => (
-            <AuthorsCards key={index} props={author} />
+          filteredDataSource?.map((author, index) => (
+            <BookCardWithPriceTag key={index} props={author} />
           ))
         ) : (
           <p>dddjjd</p>
@@ -182,4 +208,4 @@ function Bookstore() {
   );
 }
 
-export default verifyLoginToken(Bookstore);
+export default Bookstore;

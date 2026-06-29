@@ -95,6 +95,15 @@ export const IconSegmentText = styled.p`
   font-size: 20px;
   margin-left: 20px;
   color: black;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: ${COLORS.legacyBridgePrimary};
+  }
 `;
 
 function ContactMap() {
@@ -117,10 +126,12 @@ const contactData = [
   {
     name: "+234 815 982 5292",
     icon: <FaPhoneAlt color="black" />,
+    type: "tel:",
   },
   {
     name: "hello@legacybridgepublishing.com",
     icon: <IoMailSharp color="black" />,
+    type: "mailto:",
   },
 ];
 
@@ -144,7 +155,9 @@ function ContactUs() {
           {contactData?.map((cur, i) => (
             <IconSegment key={i}>
               {cur?.icon}
-              <IconSegmentText>{cur?.name}</IconSegmentText>
+              <IconSegmentText>
+                <a href={`${cur?.type}${cur?.name}`}>{cur?.name}</a>
+              </IconSegmentText>
             </IconSegment>
           ))}
         </ContactSegment2>

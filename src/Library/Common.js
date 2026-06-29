@@ -17,6 +17,17 @@ export const normalizeEmail = (email) => {
   return email?.trim().toLowerCase();
 };
 
+export const slugify = (field) =>
+  field
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "");
+
 export const generateProductId = (title) => {
   return `com.intellibridge.book.${title
     ?.toLowerCase()
